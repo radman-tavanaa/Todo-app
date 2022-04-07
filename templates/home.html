@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+{% if all_items %}
+<div class="container mt-5" dir="rtl">
+  {% for item in all_items %}
+  <div class="d-flex py-3">
+    
+    <!--status-->
+      <div class="col-1 bg-secondary  align-items-center px-1 px-lg-3 rounded-end d-flex  text-light">
+        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+      </div>
+      <!--item name-->
+      <div class="col-5 bg-secondary p-2 align-items-center text-light ">{{item.name}}</div>
+      <!--time-->
+      <div class="col-4 bg-secondary p-2 d-flex justify-content-center  align-items-center">
+        <span class="text-light">{{item.time}}</span>
+      </div>
+      <!--trash-->
+      <div class="col-2 bg-secondary p-2 rounded-start d-flex justify-content-center align-items-center">
+        <span class=""><a href="{% url 'delete' item.id %}" class="text-decoration-none text-warning">Trash</a></span>
+      </div>
+      
+  </div>
+  {% endfor %}
+</div>
+  
+{% endif %}
+
+
+
+{% endblock content %}
+
+
+
+
+    
+    
+    
